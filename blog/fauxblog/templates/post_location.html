@@ -1,0 +1,123 @@
+{% extends 'base.html' %} {% block title %} Edit blog {% endblock title %} 
+
+{% block content %}
+
+<style>
+  html, body{
+    width: 100%;
+    height: 100%;
+  }
+  .row{
+    padding-left: 10px;
+    padding-bottom: 10px;
+  }
+  .album{
+    width: 100%;
+  }
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+</style>
+
+<div class="container-fluid">
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="font-weight-light">Faux Blog</h1>
+        <p class="lead text-muted">
+          These are photos taken from {{ location }}.
+          There are {{ pictures | length }} results.
+          Scroll down below to view them!
+        </p>
+        <p>
+          <a href="#" class="btn btn-primary my-2">Main call to action</a>
+          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container-fluid bg-dark">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" style="width: 100%;">
+      {% if pictures %}
+        {% for post in pictures %}
+          <div class="col col1">
+            <div class="card shadow-sm .photo_details">
+              <div class="image">
+                <img src="{{ post.image.url }}" class="bd-placeholder-img card-img-top" alt="..." width="100%" height="225">
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btnview btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    <button type="button" class="btn btns btn-sm btn-outline-secondary">Add</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>
+          No Posts at the moment
+        </p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<footer class="text-muted py-5">
+  <div class="container">
+    <p class="float-right mb-1">
+      <a href="#">Back to top</a>
+    </p>
+    <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+    <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a
+        href="/docs/5.0/getting-started/introduction/">getting started guide</a>.</p>
+  </div>
+</footer>
+
+{% include 'modals/add-post.html'%}
+
+<script>
+    $(document).ready(function(){
+        $(".btns").click(function(){
+            $("#add_post_modal2").modal('show');
+        });
+    });
+</script> 
+
+<script>
+    $(document).ready(function () {
+        $(".btnview").click(function () {
+        var image_show = $(this).parents(".photo_details").find(".image img").attr("src");
+        console.log(image_show);
+        $("#add_post_modal .modal-body").empty().append(
+            '<div class="image" style="height: 200px; width: 200px;"><img src="' +
+                image_show +
+                '" alt="" srcset="" style="height: 500px; width: 500px;"></div>'
+            );
+        $("#add_post_modal").modal("show");
+        });
+    });
+</script>
+
+{% endblock content %}

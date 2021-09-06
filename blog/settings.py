@@ -28,11 +28,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECRET_KEY = 'django-insecure-b-@al!gbx@xz4tf59@l^_41uie1((mjlog(835$*bjo6^u)i#+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 MODE=config("MODE", default="dev")
+
 SECRET_KEY = config('SECRET_KEY')
+
 DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
+
 # development
 if config('MODE')=="dev":
    DATABASES = {

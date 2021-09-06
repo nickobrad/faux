@@ -65,7 +65,7 @@
                     <a class="btn btn-sm btn-outline-secondary" href="{% url 'updatepost' post.pk %}">Edit</a>
                     <a type="button" href="{% url 'postdetails' post.pk %}" class="btn btns btn-sm btn-outline-secondary">View Full</a>
                   </div>
-                  <small class="text-muted">9 mins</small>
+                  <small class="text-muted">{{ post.date_publshed }}</small>
                 </div>
               </div>
             </div>

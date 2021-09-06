@@ -17,7 +17,7 @@ All you need is a browser installed on your machine.
 To access this project on your local files, you can clone it using these steps
 
 1. Open your terminal
-2. Use this command to clone `$ git clone https://github.com/nickobrad/`
+2. Use this command to clone `$ git clone https://github.com/nickobrad/faux.git`
 3. This will clone the repositoty into your local folder
 4. Thank you.
 

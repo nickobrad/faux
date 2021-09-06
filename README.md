@@ -38,7 +38,7 @@ To access this project on your local files, you can clone it using these steps
 
 ### Live Site
 
-View [live](https://blogs-moringa.herokuapp.com/home)
+View [live](https://faux-blog.herokuapp.com/)
 
 ### Licence
 

@@ -11,11 +11,29 @@ class Location(models.Model):
     def __str__(self):
         return self.location
 
+    def save_location(self):
+        return self.save()
+
+    def delete_location(self):
+        return self.delete()
+
+    def update_location(self):
+        return self.save()
+
 class Category(models.Model):
     category = models.CharField(max_length = 30, blank = False, null = False)
 
     def __str__(self):
         return self.category
+
+    def save_category(self):
+        return self.save()
+
+    def delete_category(self):
+        return self.delete()
+
+    def update_category(self):
+        return self.save()
 
 class ImagePost(models.Model):
     image_name = models.CharField(max_length = 30, blank = False)
@@ -29,8 +47,24 @@ class ImagePost(models.Model):
     def get_absolute_url(self):
         return reverse('postdetails', args=(str(self.pk)))
 
+    def save_image(self):
+        return self.save()
+
+    def delete_image(self):
+        return self.delete()
+
+    @classmethod
+    def get_image_by_id(cls, id):
+        picture = cls.objects.filter(id = id).first()
+        return picture
+
     @classmethod
     def search_by_category(cls,search_term):
         pictures = cls.objects.filter(image_category__category__icontains = search_term)
+        return pictures
+
+    @classmethod
+    def filter_by_location(cls, location):
+        pictures = cls.objects.filter(image_location_id = location).all()
         return pictures
 
